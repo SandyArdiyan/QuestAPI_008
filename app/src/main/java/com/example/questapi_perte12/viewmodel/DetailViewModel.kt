@@ -31,3 +31,15 @@ class DetailViewModel(
         getSiswaById()
     }
 
+    fun getSiswaById() {
+        viewModelScope.launch {
+            detailUiState = DetailUiState.Loading
+            detailUiState = try {
+                val siswa = repositoryDataSiswa.getSiswaById(_idSiswa)
+                DetailUiState.Success(siswa)
+            } catch (e: Exception) {
+                DetailUiState.Error
+            }
+        }
+    }
+

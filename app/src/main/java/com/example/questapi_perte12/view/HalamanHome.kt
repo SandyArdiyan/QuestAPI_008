@@ -38,14 +38,14 @@ import com.example.questapi_perte12.R
 import com.example.questapi_perte12.modeldata.DataSiswa
 import com.example.questapi_perte12.uicontroller.route.DestinasiHome
 import com.example.questapi_perte12.viewmodel.HomeViewModel
-import com.example.questapi_perte12.viewmodel.provider.PenyediaViewModel
 import com.example.questapi_perte12.viewmodel.StatusUiSiswa
+import com.example.questapi_perte12.viewmodel.provider.PenyediaViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
-    navigateToUpdate: (Int) -> Unit,
+    navigateToUpdate: (Int) -> Unit, // Callback untuk navigasi ke Detail saat item diklik
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
@@ -111,6 +111,8 @@ fun HomeBody(
 
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {
+    // Pastikan file 'loading_img.xml' ada di folder drawable Anda
+    // Jika tidak ada, bisa ganti dengan CircularProgressIndicator()
     Image(
         modifier = modifier.size(200.dp),
         painter = painterResource(R.drawable.loading_img),
@@ -147,7 +149,7 @@ fun DaftarSiswa(
                 siswa = person,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_small))
-                    .clickable { onSiswaClick(person.id) }
+                    .clickable { onSiswaClick(person.id) } // Navigasi ke Detail
             )
         }
     }

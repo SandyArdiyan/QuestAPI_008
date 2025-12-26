@@ -43,3 +43,13 @@ class DetailViewModel(
         }
     }
 
+    fun deleteSiswa() {
+        viewModelScope.launch {
+            try {
+                repositoryDataSiswa.deleteSiswa(_idSiswa)
+            } catch (e: Exception) {
+                detailUiState = DetailUiState.Error
+            }
+        }
+    }
+}

@@ -3,11 +3,17 @@ package com.example.questapi_perte12.uicontroller
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.questapi_perte12.uicontroller.route.DestanasiDetail
+import com.example.questapi_perte12.uicontroller.route.DestanasiEdit
 import com.example.questapi_perte12.uicontroller.route.DestinasiEntry
 import com.example.questapi_perte12.uicontroller.route.DestinasiHome
+import com.example.questapi_perte12.view.DetailScreen
+import com.example.questapi_perte12.view.EditScreen
 import com.example.questapi_perte12.view.EntrySiswaScreen
 import com.example.questapi_perte12.view.HomeScreen
 
@@ -33,21 +39,10 @@ fun HostNavigasi(
         composable(DestinasiHome.route) {
             HomeScreen(
                 navigateToItemEntry = { navController.navigate(DestinasiEntry.route) },
-                navigateToUpdate = {
-                    // Logika navigasi ke detail/update (belum diimplementasikan di gambar)
-                    // Contoh: navController.navigate("${DestinasiDetail.route}/$it")
+                // PERBAIKAN DISINI: Tambahkan logika navigasi ke detail
+                navigateToUpdate = { idSiswa ->
+                    navController.navigate("${DestanasiDetail.route}/$idSiswa")
                 }
             )
         }
 
-        // Halaman Entry Siswa
-        composable(DestinasiEntry.route) {
-            EntrySiswaScreen(
-                navigateBack = {
-                    // Menggunakan popBackStack agar tumpukan navigasi bersih saat kembali
-                    navController.popBackStack()
-                }
-            )
-        }
-    }
-}

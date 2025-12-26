@@ -92,4 +92,24 @@ fun DetailScreen(
     }
 }
 
+@Composable
+fun DetailStatus(
+    detailUiState: DetailUiState,
+    retryAction: () -> Unit,
+    modifier: Modifier = Modifier,
+    onDeleteClick: () -> Unit
+) {
+    when (detailUiState) {
+        is DetailUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
+        is DetailUiState.Success -> {
+            DetailBody(
+                siswa = detailUiState.siswa,
+                onDelete = onDeleteClick,
+                modifier = modifier
+            )
+        }
+        is DetailUiState.Error -> ErrorScreen(retryAction, modifier = modifier.fillMaxSize())
+    }
+}
+
 }

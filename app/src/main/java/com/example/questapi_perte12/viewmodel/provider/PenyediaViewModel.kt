@@ -28,4 +28,17 @@ object PenyediaViewModel {
             )
         }
 
-       
+        initializer {
+            EditViewModel(
+                createSavedStateHandle(),
+                aplikasiDataSiswa().container.repositoryDataSiswa
+            )
+        }
+    }
+}
+
+/**
+ * Extension function untuk query aplikasi object dan mengembalikan instance dari AplikasiDataSiswa
+ */
+fun CreationExtras.aplikasiDataSiswa(): AplikasiDataSiswa =
+    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as AplikasiDataSiswa)

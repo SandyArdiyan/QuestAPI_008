@@ -68,3 +68,17 @@ fun HostNavigasi(
             )
         }
 
+        // Halaman Edit Siswa
+        composable(
+            route = "${DestanasiEdit.route}/{${DestanasiEdit.itemIdArg}}",
+            arguments = listOf(navArgument(DestanasiEdit.itemIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            EditScreen(
+                navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() }
+            )
+        }
+    }
+}

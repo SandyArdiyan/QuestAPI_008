@@ -13,15 +13,18 @@ interface ServiceApiSiswa {
     @GET("bacaTeman.php")
     suspend fun getSiswa(): List<DataSiswa>
 
-    @GET("bacaTeman.php")
+    // PERBAIKAN: Sesuaikan dengan 'baca1teman.php'
+    @GET("baca1teman.php")
     suspend fun getSiswaById(@Query("id") id: Int): DataSiswa
 
     @POST("insertTM.php")
     suspend fun postSiswa(@Body dataSiswa: DataSiswa): Response<Void>
 
-    @PUT("editTeman.php")
+    // PERBAIKAN: Sesuaikan dengan 'editTM.php'
+    @PUT("editTM.php")
     suspend fun updateSiswa(@Query("id") id: Int, @Body dataSiswa: DataSiswa): Response<Void>
 
+    // Pastikan file ini juga ada di folder htdocs kamu, jika namanya beda ganti disini
     @DELETE("deleteTeman.php")
     suspend fun deleteSiswa(@Query("id") id: Int): Response<Void>
 }

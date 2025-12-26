@@ -14,8 +14,14 @@ interface ContainerApp {
 }
 
 class DefaultContainerApp : ContainerApp {
+    /* * PENTING: Setting URL Server
+     * 1. Jika pakai Android Studio EMULATOR: Gunakan "http://10.0.2.2/umyTI/"
+     * 2. Jika pakai HP ASLI (kabel data/WiFi): Ganti "10.0.2.2" dengan IP Laptop (misal: "http://192.168.1.10/umyTI/")
+     * (Pastikan laptop dan HP ada di satu jaringan WiFi yang sama)
+     */
     private val baseurl = "http://10.0.2.2/umyTI/"
 
+    // Logging: Berguna untuk melihat data JSON yang dikirim/diterima di Logcat
     val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
@@ -24,6 +30,7 @@ class DefaultContainerApp : ContainerApp {
         .addInterceptor(logging)
         .build()
 
+    // Konfigurasi Retrofit
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(baseurl)
         .addConverterFactory(

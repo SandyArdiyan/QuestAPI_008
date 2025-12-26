@@ -46,3 +46,25 @@ fun HostNavigasi(
             )
         }
 
+        // Halaman Entry Siswa
+        composable(DestinasiEntry.route) {
+            EntrySiswaScreen(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+
+        // Halaman Detail Siswa
+        composable(
+            route = "${DestanasiDetail.route}/{${DestanasiDetail.itemIdArg}}",
+            arguments = listOf(navArgument(DestanasiDetail.itemIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            DetailScreen(
+                navigateBack = { navController.navigateUp() },
+                navigateToEdit = { idSiswa ->
+                    navController.navigate("${DestanasiEdit.route}/$idSiswa")
+                }
+            )
+        }
+
